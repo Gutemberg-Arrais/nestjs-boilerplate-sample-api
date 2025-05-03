@@ -1,4 +1,3 @@
-// trace-id.middleware.ts
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
 import * as uuid from 'uuid';

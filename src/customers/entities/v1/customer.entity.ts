@@ -1,5 +1,3 @@
-import { Transform } from 'class-transformer';
-import { CreateCustomerDto } from 'src/customers/dtos/v1/create-customer.dto';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

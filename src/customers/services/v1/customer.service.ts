@@ -36,10 +36,10 @@ export class CustomerService {
 
       return customer;
     } catch (error) {
-      this.logger.log(this.messages.errorCustomerCreate, {
+      this.logger.error(this.messages.errorCustomerCreate, {
         metadata: {
           traceId,
-          message: error.response.notification || error.message,
+          message: error.response?.notification || error.message,
         },
       });
       throw error;
@@ -82,7 +82,7 @@ export class CustomerService {
       this.logger.error(this.messages.errorCustomerFindAll, {
         metadata: {
           traceId,
-          message: error.response.notification || error.message,
+          message: error.response?.notification || error.message,
         },
       });
       throw error;

@@ -4,7 +4,6 @@ import {
   Get,
   Headers,
   Post,
-  Request,
   UseInterceptors,
 } from '@nestjs/common';
 import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
@@ -17,9 +16,9 @@ import { Customer } from '../../entities/v1/customer.entity';
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
-  // @UseInterceptors(CacheInterceptor)
-  // @CacheTTL(60000)
-  // @CacheKey('all-customers')
+  @UseInterceptors(CacheInterceptor)
+  @CacheTTL(60000)
+  @CacheKey('all-customers')
   @Get()
   async getAll(@Headers('x-trace-id') traceId: string): Promise<Customer[]> {
     return await this.customerService.findAll(traceId);

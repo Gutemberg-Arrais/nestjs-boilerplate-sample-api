@@ -22,52 +22,133 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este é um boilerplate baseado no framework [NestJS](https://github.com/nestjs/nest) para desenvolvimento rápido de aplicações backend. Este projeto serve como ponto de partida para construir APIs escaláveis e bem estruturadas, seguindo as melhores práticas de desenvolvimento.
 
-## Installation
+O boilerplate inclui configurações pré-definidas para:
+
+- Conexão com banco de dados PostgreSQL
+- Cache com Redis
+- Estrutura modular pronta para expansão
+- Configurações de ambiente via arquivos .env
+
+## Pré-requisitos
+
+- Node.js (versão 14 ou superior)
+- npm ou yarn
+- Docker e Docker Compose (para PostgreSQL e Redis)
+
+## Instalação
 
 ```bash
+# Instalar dependências
 $ npm install
+
+# Configurar variáveis de ambiente
+# Copie o arquivo .env.example para .env e ajuste as configurações conforme necessário
+$ cp .env.example .env
+
+# As principais variáveis a serem configuradas são:
+# - DATABASE_NAME, DATABASE_HOST, DATABASE_PORT, DATABASE_USERNAME, DATABASE_PASSWORD
+# - CACHE_HOST, CACHE_PORT, CACHE_TTL, CACHE_TIMEOUT
 ```
 
-## Running the app
+## Configuração do Docker
+
+Para facilitar o desenvolvimento, você pode usar Docker para executar o PostgreSQL e Redis. Crie um arquivo `docker-compose.yml` na raiz do projeto com o seguinte conteúdo:
+
+```yaml
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
+```
+
+Inicie os containers com:
 
 ```bash
-# development
+$ docker-compose up -d
+```
+
+## Executando a aplicação
+
+```bash
+# Modo de desenvolvimento
 $ npm run start
 
-# watch mode
+# Modo de desenvolvimento com hot-reload
 $ npm run start:dev
 
-# production mode
+# Modo de produção
 $ npm run start:prod
 ```
 
-## Test
+## Estrutura do projeto
+
+O boilerplate segue a estrutura modular recomendada pelo NestJS:
+
+```
+src/
+├── app.controller.ts      # Controlador principal
+├── app.module.ts          # Módulo principal
+├── app.service.ts         # Serviço principal
+├── database.module.ts     # Configuração do banco de dados
+├── main.ts                # Ponto de entrada da aplicação
+└── modules/               # Módulos da aplicação
+```
+
+## Testes
 
 ```bash
-# unit tests
+# Testes unitários
 $ npm run test
 
-# e2e tests
+# Testes e2e
 $ npm run test:e2e
 
-# test coverage
+# Cobertura de testes
 $ npm run test:cov
 ```
 
-## Support
+## Expandindo o boilerplate
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Para adicionar novos recursos à sua aplicação:
 
-## Stay in touch
+1. Crie novos módulos na pasta `src/modules/`
+2. Adicione os módulos ao `AppModule` em `src/app.module.ts`
+3. Implemente controladores, serviços e entidades conforme necessário
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+## Suporte
+
+NestJS é um projeto de código aberto licenciado sob MIT. Ele pode crescer graças aos patrocinadores e ao apoio de incríveis apoiadores. Se você gostaria de se juntar a eles, por favor [leia mais aqui](https://docs.nestjs.com/support).
+
+## Contato
+
+- Autor - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+## Licença
 
-Nest is [MIT licensed](LICENSE).
+NestJS é [licenciado sob MIT](LICENSE).
