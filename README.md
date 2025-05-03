@@ -45,10 +45,6 @@ O boilerplate inclui configurações pré-definidas para:
 # Instalar dependências
 $ npm install
 
-# Configurar variáveis de ambiente
-# Copie o arquivo .env.example para .env e ajuste as configurações conforme necessário
-$ cp .env.example .env
-
 # As principais variáveis a serem configuradas são:
 # - DATABASE_NAME, DATABASE_HOST, DATABASE_PORT, DATABASE_USERNAME, DATABASE_PASSWORD
 # - CACHE_HOST, CACHE_PORT, CACHE_TTL, CACHE_TIMEOUT
@@ -115,7 +111,6 @@ src/
 ├── app.service.ts         # Serviço principal
 ├── database.module.ts     # Configuração do banco de dados
 ├── main.ts                # Ponto de entrada da aplicação
-└── modules/               # Módulos da aplicação
 ```
 
 ## Testes
@@ -135,7 +130,7 @@ $ npm run test:cov
 
 Para adicionar novos recursos à sua aplicação:
 
-1. Crie novos módulos na pasta `src/modules/`
+1. Crie novos módulos na pasta `src/`
 2. Adicione os módulos ao `AppModule` em `src/app.module.ts`
 3. Implemente controladores, serviços e entidades conforme necessário
 
