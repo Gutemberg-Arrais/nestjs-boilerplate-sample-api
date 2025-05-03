@@ -1,6 +1,10 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class CustomException extends HttpException {
+  public readonly traceId: string;
+  public readonly statusCode: HttpStatus;
+  public readonly message: string;
+
   constructor(message: string, traceId: string, statusCode: HttpStatus) {
     const customResponse = {
       data: {},
@@ -9,5 +13,8 @@ export class CustomException extends HttpException {
       notification: message,
     };
     super(customResponse, statusCode);
+    this.message = message;
+    this.traceId = traceId;
+    this.statusCode = statusCode;
   }
 }

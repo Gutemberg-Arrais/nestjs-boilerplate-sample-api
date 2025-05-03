@@ -3,9 +3,6 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import * as winston from 'winston';
 import { WinstonModule } from 'nest-winston';
-import { NodeTracerProvider } from '@opentelemetry/node';
-import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-node';
-import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
 
 const env = process.env;
 
