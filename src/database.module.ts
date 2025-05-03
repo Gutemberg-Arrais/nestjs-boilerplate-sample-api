@@ -29,9 +29,9 @@ import { Customer } from './customers/entities/v1/customer.entity';
         store: redisStore,
         ttl: configService.get('cache.ttl'),
         socket: {
-          host: configService.get('redis.host'),
-          port: configService.get('redis.port'),
-          connectTimeout: configService.get('redis.timeout'),
+          host: configService.get('cache.host'),
+          port: configService.get('cache.port'),
+          connectTimeout: configService.get('cache.timeout'),
         },
       }),
     }),

@@ -54,7 +54,8 @@ export class CustomerService {
         },
       });
 
-      const cacheCustomers = await this.cacheService.get('all-customers111');
+      const cacheCustomers = await this.cacheService.get('all-customers');
+
       if (cacheCustomers) {
         return cacheCustomers;
       }
@@ -69,7 +70,7 @@ export class CustomerService {
         );
       }
 
-      await this.cacheService.set('all-customers111', result);
+      await this.cacheService.set('all-customers', result);
 
       this.logger.log(this.messages.finishCustomerFindAll, {
         metadata: {
